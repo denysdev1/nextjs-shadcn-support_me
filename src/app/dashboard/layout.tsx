@@ -5,7 +5,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     <div className='grid grid-cols-[250px_1fr] min-h-screen'>
       <MainMenu />
       <div className='overflow-auto py-2 px-4'>
-        <h1>Welcome back, User!</h1>
+        <h1 className='mb-4'>Welcome back, User!</h1>
         {children}
       </div>
     </div>

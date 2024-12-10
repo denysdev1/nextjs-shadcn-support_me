@@ -19,7 +19,7 @@ const MenuItem = ({
       className={cn(
         'block hover:bg-white dark:hover:bg-zinc-700 text-muted-foreground hover:text-foreground p-2 rounded-md',
         isActive
-          ? 'bg-primary hover:bg-primary dark:hover:bg-primary text-primary-foreground hover:text-foreground'
+          ? 'bg-primary hover:bg-primary dark:hover:bg-primary text-primary-foreground hover:text-white'
           : ''
       )}
     >
