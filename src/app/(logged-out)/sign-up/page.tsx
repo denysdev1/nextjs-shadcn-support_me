@@ -37,6 +37,7 @@ import {
 } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
 import { format } from 'date-fns';
+import { PasswordInput } from '@/components/ui/password-input';
 
 const formSchema = z
   .object({
@@ -54,8 +55,26 @@ const formSchema = z
 
       return date <= eighteenYearsAgo;
     }, 'You must be at least 18 years old'),
+    password: z
+      .string()
+      .min(8, 'Password must be at least 8 characters long')
+      .refine((password) => {
+        // must contain at least 1 special character and 1 uppercase letter
+        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
+          password
+        );
+      }, 'Password must contain at least 1 special character and 1 uppercase letter'),
+    confirmPassword: z.string(),
   })
   .superRefine((data, ctx) => {
+    if (data.password !== data.confirmPassword) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ['confirmPassword'],
+        message: 'Passwords do not match',
+      });
+    }
+
     if (data.accountType !== 'company') return;
 
     if (!data.companyName) {
@@ -215,6 +234,32 @@ const SignUpPage = () => {
                         />
                       </PopoverContent>
                     </Popover>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name='password'
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <PasswordInput placeholder='********' {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name='confirmPassword'
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Confirm Password</FormLabel>
+                    <FormControl>
+                      <PasswordInput placeholder='********' {...field} />
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}

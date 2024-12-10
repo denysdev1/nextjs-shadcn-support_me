@@ -24,10 +24,11 @@ import {
   FormMessage,
   FormDescription,
 } from '@/components/ui/form';
+import { PasswordInput } from '@/components/ui/password-input';
 
 const formSchema = z.object({
   email: z.string().email(),
-  password: z.string().min(8),
+  password: z.string().min(1, 'Password is required'),
 });
 
 const LoginPage = () => {
@@ -81,11 +82,7 @@ const LoginPage = () => {
                   <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder='********'
-                        type='password'
-                        {...field}
-                      />
+                      <PasswordInput placeholder='********' {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
