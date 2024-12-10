@@ -22,6 +22,7 @@ import {
   FormLabel,
   FormControl,
   FormMessage,
+  FormDescription,
 } from '@/components/ui/form';
 import {
   Select,
@@ -38,6 +39,7 @@ import {
 import { Calendar } from '@/components/ui/calendar';
 import { format } from 'date-fns';
 import { PasswordInput } from '@/components/ui/password-input';
+import { Checkbox } from '@/components/ui/checkbox';
 
 const formSchema = z
   .object({
@@ -64,7 +66,10 @@ const formSchema = z
           password
         );
       }, 'Password must contain at least 1 special character and 1 uppercase letter'),
-    confirmPassword: z.string(),
+    confirmPassword: z.string().min(1, 'Confirm password is required'),
+    acceptTerms: z.boolean().refine((value) => value === true, {
+      message: 'You must accept the terms and conditions to sign up',
+    }),
   })
   .superRefine((data, ctx) => {
     if (data.password !== data.confirmPassword) {
@@ -102,6 +107,9 @@ const SignUpPage = () => {
       accountType: 'personal',
       companyName: '',
       numberOfEmployees: 0,
+      password: '',
+      confirmPassword: '',
+      acceptTerms: false,
     },
   });
 
@@ -189,6 +197,7 @@ const SignUpPage = () => {
                             min={0}
                             placeholder='Employees'
                             {...field}
+                            value={field.value || ''}
                           />
                         </FormControl>
                         <FormMessage />
@@ -260,6 +269,36 @@ const SignUpPage = () => {
                     <FormControl>
                       <PasswordInput placeholder='********' {...field} />
                     </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name='acceptTerms'
+                render={({ field }) => (
+                  <FormItem>
+                    <div className='flex items-center gap-2'>
+                      <FormControl>
+                        <Checkbox
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <FormLabel>
+                        Accept Terms & Conditions{' '}
+                        <span className='text-red-500'>*</span>
+                      </FormLabel>
+                    </div>
+                    <FormDescription>
+                      By signing up, you agree to our{' '}
+                      <Link
+                        href='/terms-and-conditions'
+                        className='text-blue-500'
+                      >
+                        Terms & Conditions
+                      </Link>
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
