@@ -3,6 +3,7 @@ import MenuItem from './MenuItem';
 import MenuTitle from './MenuTItle';
 import Link from 'next/link';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
+import { cn } from '@/lib/utils';
 
 const menuItems = [
   { href: '', title: 'My dashboard' },
@@ -12,13 +13,18 @@ const menuItems = [
   { href: '/settings', title: 'Settings' },
 ];
 
-const MainMenu = () => {
+const MainMenu = ({ className }: { className?: string }) => {
   return (
-    <nav className='bg-muted h-full overflow-auto p-4 flex flex-col'>
-      <header className='border-b dark:border-b-black border-b-zinc-300 pb-4'>
+    <nav
+      className={cn(
+        'md:bg-muted h-full overflow-auto p-4 flex flex-col',
+        className
+      )}
+    >
+      <header className='border-b dark:border-b-black border-b-zinc-300 pb-4 md:block hidden'>
         <MenuTitle />
       </header>
-      <div className='flex flex-col gap-2 py-4 grow'>
+      <div className='flex flex-col gap-2 py-4 md:grow'>
         {menuItems.map((item) => (
           <MenuItem key={item.href} href={item.href}>
             {item.title}

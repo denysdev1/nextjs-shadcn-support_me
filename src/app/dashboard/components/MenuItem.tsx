@@ -1,8 +1,10 @@
 'use client';
 
+import { DrawerContext } from '@/components/ui/drawer';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useContext } from 'react';
 
 const MenuItem = ({
   href,
@@ -11,6 +13,7 @@ const MenuItem = ({
   href: string;
   children: React.ReactNode;
 }) => {
+  const { onClose } = useContext(DrawerContext);
   const pathname = usePathname();
   const isActive = pathname === `/dashboard${href}`;
 
@@ -23,7 +26,11 @@ const MenuItem = ({
           : ''
       )}
     >
-      <Link className='w-full block' href={`/dashboard${href}`}>
+      <Link
+        className='w-full block'
+        href={`/dashboard${href}`}
+        onClick={onClose}
+      >
         {children}
       </Link>
     </div>
