@@ -68,7 +68,7 @@ function Calendar({
         Dropdown: ({ ...dropdownProps }) => {
           const { fromYear, fromMonth, fromDate, toYear, toMonth, toDate } =
             useDayPicker();
-          const { currentMonth } = useNavigation();
+          const { currentMonth, goToMonth } = useNavigation();
           let selectValues: { label: string; value: string }[] = [];
 
           if (dropdownProps.name === 'months') {
@@ -98,7 +98,20 @@ function Calendar({
           );
 
           return (
-            <Select>
+            <Select
+              onValueChange={(value) => {
+                const newDate = new Date(currentMonth);
+
+                if (dropdownProps.name === 'months') {
+                  newDate.setMonth(parseInt(value));
+                } else if (dropdownProps.name === 'years') {
+                  newDate.setFullYear(parseInt(value));
+                }
+
+                goToMonth(newDate);
+              }}
+              value={dropdownProps.value?.toString()}
+            >
               <SelectTrigger>{caption}</SelectTrigger>
               <SelectContent>
                 {selectValues.map(({ label, value }) => (
