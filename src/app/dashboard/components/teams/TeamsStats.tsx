@@ -1,7 +1,12 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ListChecksIcon, StarIcon, UsersIcon } from 'lucide-react';
+import {
+  ListChecksIcon,
+  PieChartIcon,
+  StarIcon,
+  UsersIcon,
+} from 'lucide-react';
 import Link from 'next/link';
 import cm from '@/../public/images/cm.jpg';
 import tf from '@/../public/images/tf.jpg';
@@ -12,6 +17,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import TeamDistributionChart from './TeamDistributionChart';
+import SupportTicketsResolved from './SupportTicketsResolved';
 
 const teamLeaders = [
   {
@@ -107,9 +114,13 @@ const TeamsStats = () => {
         </Card>
         <Card className='flex flex-col'>
           <CardHeader className='pb-2'>
-            <CardTitle className='text-base'>Team distribution</CardTitle>
+            <CardTitle className='text-base flex justify-between'>
+              <span>Team distribution</span> <PieChartIcon />
+            </CardTitle>
           </CardHeader>
-          <CardContent className='flex gap-2 items-center'></CardContent>
+          <CardContent>
+            <TeamDistributionChart />
+          </CardContent>
         </Card>
       </div>
       <Card className='my-4'>
@@ -119,7 +130,9 @@ const TeamsStats = () => {
             <span>Support tickets resolved</span>
           </CardTitle>
         </CardHeader>
-        <CardContent className='pl-0'>{/* LINE GRAPH */}</CardContent>
+        <CardContent className='pl-0'>
+          <SupportTicketsResolved />
+        </CardContent>
       </Card>
     </>
   );
