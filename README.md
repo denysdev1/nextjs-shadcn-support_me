@@ -2,7 +2,7 @@
 
 ![SupportMe Dashboard](./public/images/dashboard-preview.png)
 
-[DEMO](https://nextjs-shadcn-support-me-nzy1.vercel.app/)
+[DEMO](https://nextjs-shadcn-support-me.vercel.app/)
 
 ## Overview
 
