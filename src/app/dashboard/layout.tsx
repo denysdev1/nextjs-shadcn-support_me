@@ -33,7 +33,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         )}
       </div>
       <div className='overflow-auto py-2 px-4'>
-        <h1 className='mb-4'>Welcome back, User!</h1>
+        <h1 className='mb-4'>Welcome back, shadcn!</h1>
         {children}
       </div>
     </div>
