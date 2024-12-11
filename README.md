@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SupportMe - shadcn/ui Component Showcase
+
+[DEMO](https://nextjs-shadcn-support-me-nzy1.vercel.app/)
+
+## Overview
+
+SupportMe is a demonstration project showcasing the implementation and styling capabilities of shadcn/ui components within a Next.js application. It's structured as an employee dashboard to provide practical context for component usage.
+
+## Purpose
+
+This project serves as a reference implementation for:
+
+- Integration of shadcn/ui components in Next.js
+- Component customization and theming
+- Responsive design patterns
+- Dark/Light mode implementation
+
+## Routes
+
+```
+/login
+/sign-up
+/dashboard
+  /account
+  /employees
+  /settings
+  /teams
+```
+
+## Featured Components
+
+### Layout Components
+
+- Card
+- Drawer
+- Tabs
+- Avatar
+
+### Form Components
+
+- Input
+- Password Input
+- Select
+- Checkbox
+- Label
+
+### Data Display
+
+- Table (using TanStack Table)
+- Badge
+- Tooltip
+- Popover
+
+### Charts
+
+- Bar Chart (Recharts)
+- Pie Chart (Recharts)
+
+## Tech Stack
+
+- **Framework**: Next.js 15
+- **UI Components**: shadcn/ui
+- **Styling**: Tailwind CSS
+- **Charts**: Recharts
+- **Icons**: Lucide React
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- npm/yarn/pnpm
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/yourusername/support-me.git
+
+# Install dependencies
+npm install
+
+# Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the local development server.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/
+│   ├── (logged-out)/     # Login/Signup component examples
+│   ├── dashboard/        # Main component showcase
+│   └── layout.tsx        # Root layout with theming
+├── components/
+│   └── ui/              # shadcn/ui components
+└── lib/                 # Utilities
+```
 
-## Learn More
+## Theme Customization
 
-To learn more about Next.js, take a look at the following resources:
+The project demonstrates theme customization through:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Custom color palette in `tailwind.config.ts`
+- Dark/Light mode toggle
+- Component style overrides
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
